@@ -190,6 +190,13 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.api.nvim_create_autocmd('VimEnter', {
+    desc = 'Open neo-tree',
+    callback = function()
+        vim.cmd("Neotree")
+    end,
+});
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -359,6 +366,15 @@ require('lazy').setup({
         --   },
         -- },
         -- pickers = {}
+        defaults = {
+            vimgrep_arguments = {
+            'rg',
+            '--column',
+            '--smart-case',
+            '--fixed-strings' -- Add this flag to search for the exact string
+            },
+            -- other configurations...
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
